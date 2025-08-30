@@ -135,7 +135,7 @@ $translations = [
         'how_reminders_desc' => 'Ορίστε υπενθυμίσεις μέσω συνομιλίας. Παράδειγμα: «Δημιούργησε υπενθύμιση ‘Μηνιαία Αναφορά’ να ξεκινήσει σε 60 δευτερόλεπτα, επανάληψη κάθε 3600 δευτερόλεπτα».',
 
         'contact_title' => 'Επικοινωνήστε μαζί μας',
-        'contact_desc' => 'Θέλετε επίδειξη, πληροφορίες τιμολόγησης ή ολοκλήρωση με το stack σας; Στείλτε μήνυμα και η ομάδα μας θα επικοινωνήσει μαζί σας.',
+        'contact_desc' => 'Θέλετε επίδειξη, πληροφορίες τιμολόγησης η κατι άλλο; Στείλτε μήνυμα και η ομάδα μας θα επικοινωνήσει μαζί σας.',
         'contact_email' => 'contact@idealistic.ai',
         'contact_site' => 'https://www.idealistic.ai',
         'contact_location' => 'Ευρώπη, Αθήνα',
@@ -144,7 +144,7 @@ $translations = [
         'label_email' => 'Εργασιακό Email',
         'placeholder_email' => 'name@example.com',
         'label_message' => 'Πώς μπορούμε να βοηθήσουμε;',
-        'placeholder_message' => 'Πείτε μας σύντομα το use-case σας...',
+        'placeholder_message' => 'Πείτε μας σύντομα τη περίπτωση χρήσης σας...',
         'btn_submit' => 'Ζητήστε επίδειξη',
 
         'err_name_required' => 'Το όνομα είναι υποχρεωτικό.',
@@ -263,8 +263,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
     </script>
 
     <link rel="apple-touch-icon" sizes="180x180" href="https://www.idealistic.ai/.images/apple-touch-icon.png">
-    <link rel="icon" href="https://www.idealistic.ai/.images/favicon.ico" sizes="any">
-    <link rel="mask-icon" href="https://www.idealistic.ai/.images/safari-pinned-tab.svg" color="#0d6efd">
+    <link rel="icon" type="image/png" href="https://www.idealistic.ai/.images/logo.png" sizes="any">
+    <link rel="mask-icon" href="https://www.idealistic.ai/.images/logo.svg" color="#0d6efd">
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link href="https://www.idealistic.ai/.design/bootstrap.min.css" rel="stylesheet">
@@ -569,15 +569,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
 
         <div class="collapse navbar-collapse" id="navMain">
             <ul class="navbar-nav ms-auto align-items-lg-center">
-                <li class="nav-item"><a class="nav-link active" href="#home"><?php echo htmlspecialchars($t['nav_home'], ENT_QUOTES, 'UTF-8'); ?></a></li>
-                <li class="nav-item"><a class="nav-link" href="#features"><?php echo htmlspecialchars($t['nav_features'], ENT_QUOTES, 'UTF-8'); ?></a></li>
-                <li class="nav-item"><a class="nav-link" href="#usecases"><?php echo htmlspecialchars($t['nav_usecases'], ENT_QUOTES, 'UTF-8'); ?></a></li>
-                <li class="nav-item"><a class="nav-link" href="#contact"><?php echo htmlspecialchars($t['nav_contact'], ENT_QUOTES, 'UTF-8'); ?></a></li>
-                <li class="nav-item ms-2 d-none d-lg-inline"><a class="btn btn-outline-primary btn-sm" href="#contact"><?php echo htmlspecialchars($t['cta_request'], ENT_QUOTES, 'UTF-8'); ?><span class="visually-hidden"> for BigManage</span></a></li>
+                <li class="nav-item"><a class="nav-link active"
+                                        href="#home"><?php echo htmlspecialchars($t['nav_home'], ENT_QUOTES, 'UTF-8'); ?></a>
+                </li>
+                <li class="nav-item"><a class="nav-link"
+                                        href="#features"><?php echo htmlspecialchars($t['nav_features'], ENT_QUOTES, 'UTF-8'); ?></a>
+                </li>
+                <li class="nav-item"><a class="nav-link"
+                                        href="#usecases"><?php echo htmlspecialchars($t['nav_usecases'], ENT_QUOTES, 'UTF-8'); ?></a>
+                </li>
+                <li class="nav-item"><a class="nav-link"
+                                        href="#contact"><?php echo htmlspecialchars($t['nav_contact'], ENT_QUOTES, 'UTF-8'); ?></a>
+                </li>
+                <li class="nav-item ms-2 d-none d-lg-inline"><a class="btn btn-outline-primary btn-sm"
+                                                                href="#contact"><?php echo htmlspecialchars($t['cta_request'], ENT_QUOTES, 'UTF-8'); ?>
+                        <span class="visually-hidden"> for BigManage</span></a></li>
 
                 <li class="nav-item ms-2">
                     <div class="dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" id="languageDropdown"
+                           data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-translate"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
@@ -590,7 +601,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
                 <li class="nav-item ms-3 d-flex align-items-center">
                     <div class="form-check form-switch mb-0">
                         <input class="form-check-input" type="checkbox" id="themeToggle" aria-label="Toggle dark mode">
-                        <label class="form-check-label ms-2 d-none d-lg-inline" for="themeToggle"><?php echo htmlspecialchars($t['label_dark'], ENT_QUOTES, 'UTF-8'); ?></label>
+                        <label class="form-check-label ms-2 d-none d-lg-inline"
+                               for="themeToggle"><?php echo htmlspecialchars($t['label_dark'], ENT_QUOTES, 'UTF-8'); ?></label>
                     </div>
                 </li>
             </ul>
@@ -606,20 +618,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
                 <p class="lead mt-3 reveal"><?php echo htmlspecialchars($t['lead'], ENT_QUOTES, 'UTF-8'); ?></p>
 
                 <div class="d-flex gap-3 mt-4 flex-wrap reveal">
-                    <a href="#contact" class="btn btn-primary btn-lg"><?php echo htmlspecialchars($t['cta_request'], ENT_QUOTES, 'UTF-8'); ?><span class="visually-hidden"> for BigManage</span></a>
-                    <a href="#features" class="btn btn-outline-secondary btn-lg"><?php echo htmlspecialchars($t['cta_explore'], ENT_QUOTES, 'UTF-8'); ?></a>
+                    <a href="#contact"
+                       class="btn btn-primary btn-lg"><?php echo htmlspecialchars($t['cta_request'], ENT_QUOTES, 'UTF-8'); ?>
+                        <span class="visually-hidden"> for BigManage</span></a>
+                    <a href="#features"
+                       class="btn btn-outline-secondary btn-lg"><?php echo htmlspecialchars($t['cta_explore'], ENT_QUOTES, 'UTF-8'); ?></a>
                 </div>
 
                 <ul class="list-unstyled mt-4 d-flex gap-4 flex-wrap muted reveal">
-                    <li><strong><?php echo htmlspecialchars($t['pill_1_title'], ENT_QUOTES, 'UTF-8'); ?></strong> — <?php echo htmlspecialchars($t['pill_1_desc'], ENT_QUOTES, 'UTF-8'); ?></li>
-                    <li><strong><?php echo htmlspecialchars($t['pill_2_title'], ENT_QUOTES, 'UTF-8'); ?></strong> — <?php echo htmlspecialchars($t['pill_2_desc'], ENT_QUOTES, 'UTF-8'); ?></li>
-                    <li><strong><?php echo htmlspecialchars($t['pill_3_title'], ENT_QUOTES, 'UTF-8'); ?></strong> — <?php echo htmlspecialchars($t['pill_3_desc'], ENT_QUOTES, 'UTF-8'); ?></li>
+                    <li><strong><?php echo htmlspecialchars($t['pill_1_title'], ENT_QUOTES, 'UTF-8'); ?></strong>
+                        — <?php echo htmlspecialchars($t['pill_1_desc'], ENT_QUOTES, 'UTF-8'); ?></li>
+                    <li><strong><?php echo htmlspecialchars($t['pill_2_title'], ENT_QUOTES, 'UTF-8'); ?></strong>
+                        — <?php echo htmlspecialchars($t['pill_2_desc'], ENT_QUOTES, 'UTF-8'); ?></li>
+                    <li><strong><?php echo htmlspecialchars($t['pill_3_title'], ENT_QUOTES, 'UTF-8'); ?></strong>
+                        — <?php echo htmlspecialchars($t['pill_3_desc'], ENT_QUOTES, 'UTF-8'); ?></li>
                 </ul>
             </div>
 
             <div class="col-lg-5 offset-lg-1 d-none d-lg-block">
                 <div class="hero-visual p-2">
-                    <img id="heroMockup" src="https://www.idealistic.ai/.images/logoTransparent.png" alt="BigManage mockup (transparent)">
+                    <img id="heroMockup" src="https://www.idealistic.ai/.images/logoTransparent.png"
+                         alt="BigManage mockup (transparent)">
                 </div>
             </div>
         </div>
@@ -649,7 +668,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
 
                 <div class="col-md-6">
                     <div class="p-3 contact-card feature-card h-100 d-flex reveal">
-                        <div class="feature-icon text-success"><i class="bi bi-people-fill" aria-hidden="true"></i></div>
+                        <div class="feature-icon text-success"><i class="bi bi-people-fill" aria-hidden="true"></i>
+                        </div>
                         <div class="ms-3 flex-grow-1">
                             <h3 class="mb-1"><?php echo htmlspecialchars($t['f_employees'], ENT_QUOTES, 'UTF-8'); ?></h3>
                             <p class="muted mb-0"><?php echo htmlspecialchars($t['f_employees_desc'], ENT_QUOTES, 'UTF-8'); ?></p>
@@ -659,7 +679,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
 
                 <div class="col-md-6">
                     <div class="p-3 contact-card feature-card h-100 d-flex reveal">
-                        <div class="feature-icon text-warning"><i class="bi bi-person-badge" aria-hidden="true"></i></div>
+                        <div class="feature-icon text-warning"><i class="bi bi-person-badge" aria-hidden="true"></i>
+                        </div>
                         <div class="ms-3 flex-grow-1">
                             <h3 class="mb-1"><?php echo htmlspecialchars($t['f_positions'], ENT_QUOTES, 'UTF-8'); ?></h3>
                             <p class="muted mb-0"><?php echo htmlspecialchars($t['f_positions_desc'], ENT_QUOTES, 'UTF-8'); ?></p>
@@ -689,7 +710,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
 
                 <div class="col-md-6">
                     <div class="p-3 contact-card feature-card h-100 d-flex reveal">
-                        <div class="feature-icon text-secondary"><i class="bi bi-calendar-check" aria-hidden="true"></i></div>
+                        <div class="feature-icon text-secondary"><i class="bi bi-calendar-check" aria-hidden="true"></i>
+                        </div>
                         <div class="ms-3 flex-grow-1">
                             <h3 class="mb-1"><?php echo htmlspecialchars($t['f_reminders'], ENT_QUOTES, 'UTF-8'); ?></h3>
                             <p class="muted mb-0"><?php echo htmlspecialchars($t['f_reminders_desc'], ENT_QUOTES, 'UTF-8'); ?></p>
@@ -742,7 +764,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
                         </div>
 
                         <div class="timeline-item">
-                            <div class="timeline-bullet"><i class="bi bi-person-bounding-box" aria-hidden="true"></i></div>
+                            <div class="timeline-bullet"><i class="bi bi-person-bounding-box" aria-hidden="true"></i>
+                            </div>
                             <div class="ps-3">
                                 <h3><?php echo htmlspecialchars($t['how_positions'], ENT_QUOTES, 'UTF-8'); ?></h3>
                                 <p class="muted"><?php echo htmlspecialchars($t['how_positions_desc'], ENT_QUOTES, 'UTF-8'); ?></p>
@@ -779,9 +802,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
                     <p class="muted reveal"><?php echo htmlspecialchars($t['contact_desc'], ENT_QUOTES, 'UTF-8'); ?></p>
 
                     <ul class="list-unstyled mt-4 muted reveal">
-                        <li><i class="bi bi-envelope-fill me-2"></i><?php echo htmlspecialchars($t['contact_email'], ENT_QUOTES, 'UTF-8'); ?></li>
-                        <li><i class="bi bi-globe2 me-2"></i><?php echo htmlspecialchars($t['contact_site'], ENT_QUOTES, 'UTF-8'); ?></li>
-                        <li><i class="bi bi-geo-alt-fill me-2"></i><?php echo htmlspecialchars($t['contact_location'], ENT_QUOTES, 'UTF-8'); ?></li>
+                        <li>
+                            <i class="bi bi-envelope-fill me-2"></i><?php echo htmlspecialchars($t['contact_email'], ENT_QUOTES, 'UTF-8'); ?>
+                        </li>
+                        <li>
+                            <i class="bi bi-globe2 me-2"></i><?php echo htmlspecialchars($t['contact_site'], ENT_QUOTES, 'UTF-8'); ?>
+                        </li>
+                        <li>
+                            <i class="bi bi-geo-alt-fill me-2"></i><?php echo htmlspecialchars($t['contact_location'], ENT_QUOTES, 'UTF-8'); ?>
+                        </li>
                     </ul>
                 </div>
 
@@ -830,7 +859,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
                                       placeholder="<?php echo htmlspecialchars($t['placeholder_message'], ENT_QUOTES, 'UTF-8'); ?>"><?php echo htmlspecialchars($message, ENT_QUOTES, 'UTF-8'); ?></textarea>
                         </div>
                         <div class="d-grid">
-                            <button class="btn btn-primary btn-lg" type="submit"><?php echo htmlspecialchars($t['btn_submit'], ENT_QUOTES, 'UTF-8'); ?></button>
+                            <button class="btn btn-primary btn-lg"
+                                    type="submit"><?php echo htmlspecialchars($t['btn_submit'], ENT_QUOTES, 'UTF-8'); ?></button>
                         </div>
                     </form>
                 </div>
@@ -850,17 +880,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
         <div class="py-2 footer-links d-flex align-items-center gap-3 flex-wrap">
             <a class="d-flex align-items-center gap-2"
                href="https://www.idealistic.ai/bigmanage/documentation/?language=<?php echo urlencode($_GET['language'] ?? ''); ?>"
-               target="_blank" rel="noopener"><i class="bi bi-file-earmark-text"></i><span class="d-none d-md-inline"><?php echo htmlspecialchars($t['ft_doc'], ENT_QUOTES, 'UTF-8'); ?></span></a>
+               target="_blank" rel="noopener"><i class="bi bi-file-earmark-text"></i><span
+                        class="d-none d-md-inline"><?php echo htmlspecialchars($t['ft_doc'], ENT_QUOTES, 'UTF-8'); ?></span></a>
             <a class="d-flex align-items-center gap-2" href="https://www.instagram.com/idealistic.ai" target="_blank"
-               rel="noopener"><i class="bi bi-instagram"></i><span class="d-none d-md-inline"><?php echo htmlspecialchars($t['ft_instagram'], ENT_QUOTES, 'UTF-8'); ?></span></a>
+               rel="noopener"><i class="bi bi-instagram"></i><span
+                        class="d-none d-md-inline"><?php echo htmlspecialchars($t['ft_instagram'], ENT_QUOTES, 'UTF-8'); ?></span></a>
             <a class="d-flex align-items-center gap-2" href="https://www.facebook.com/idealisticai" target="_blank"
-               rel="noopener"><i class="bi bi-messenger"></i><span class="d-none d-md-inline"><?php echo htmlspecialchars($t['ft_messenger'], ENT_QUOTES, 'UTF-8'); ?></span></a>
+               rel="noopener"><i class="bi bi-messenger"></i><span
+                        class="d-none d-md-inline"><?php echo htmlspecialchars($t['ft_messenger'], ENT_QUOTES, 'UTF-8'); ?></span></a>
             <a class="d-flex align-items-center gap-2" href="https://wa.me/6970155623" target="_blank"
-               rel="noopener"><i class="bi bi-whatsapp"></i><span class="d-none d-md-inline"><?php echo htmlspecialchars($t['ft_whatsapp'], ENT_QUOTES, 'UTF-8'); ?></span></a>
+               rel="noopener"><i class="bi bi-whatsapp"></i><span
+                        class="d-none d-md-inline"><?php echo htmlspecialchars($t['ft_whatsapp'], ENT_QUOTES, 'UTF-8'); ?></span></a>
             <a class="d-flex align-items-center gap-2" href="https://discord.com/invite/kmFJWcRtSP" target="_blank"
-               rel="noopener"><i class="bi bi-discord"></i><span class="d-none d-md-inline"><?php echo htmlspecialchars($t['ft_discord'], ENT_QUOTES, 'UTF-8'); ?></span></a>
+               rel="noopener"><i class="bi bi-discord"></i><span
+                        class="d-none d-md-inline"><?php echo htmlspecialchars($t['ft_discord'], ENT_QUOTES, 'UTF-8'); ?></span></a>
             <a class="d-flex align-items-center gap-2" href="https://t.me/idealisticBigManageBot" target="_blank"
-               rel="noopener"><i class="bi bi-telegram"></i><span class="d-none d-md-inline"><?php echo htmlspecialchars($t['ft_telegram'], ENT_QUOTES, 'UTF-8'); ?></span></a>
+               rel="noopener"><i class="bi bi-telegram"></i><span
+                        class="d-none d-md-inline"><?php echo htmlspecialchars($t['ft_telegram'], ENT_QUOTES, 'UTF-8'); ?></span></a>
         </div>
     </div>
 </footer>
