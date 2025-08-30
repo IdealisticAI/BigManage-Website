@@ -74,6 +74,7 @@ $translations = [
         'err_rate_limit' => 'You are sending messages too quickly. Please wait a moment and try again.',
         'success_received' => 'Thanks — your message was received. We will contact you as soon as possible.',
         'failure_received' => 'Your message failed to be received. Please try again later.',
+        'submission_problem' => 'There was a problem submitting the form:',
 
         'ft_doc' => 'Documentation',
         'ft_instagram' => 'Instagram',
@@ -156,6 +157,7 @@ $translations = [
         'err_rate_limit' => 'Στέλνετε μηνύματα πολύ γρήγορα. Περιμένετε λίγο και δοκιμάστε ξανά.',
         'success_received' => 'Ευχαριστούμε — το μήνυμά σας λήφθηκε. Θα επικοινωνήσουμε το συντομότερο δυνατό.',
         'failure_received' => 'Το μήνυμά σας δεν παραλήφθηκε. Παρακαλώ δοκιμάστε αργότερα.',
+        'submission_problem' => 'Υπήρξε πρόβλημα με την υποβολή της φόρμας:',
 
         'ft_doc' => 'Τεκμηρίωση',
         'ft_instagram' => 'Instagram',
@@ -818,7 +820,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
                     <?php
                     if (!empty($errors)) {
                         echo '<div class="alert alert-danger">';
-                        echo '<strong>There was a problem with your submission:</strong><ul class="mb-0">';
+                        echo '<strong>' . htmlspecialchars($t['submission_problem'], ENT_QUOTES, 'UTF-8') . '</strong><ul class="mb-0">';
                         foreach ($errors as $e) {
                             echo '<li>' . htmlspecialchars($e, ENT_QUOTES, 'UTF-8') . '</li>';
                         }
