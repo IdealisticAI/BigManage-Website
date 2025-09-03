@@ -2,7 +2,7 @@
 $translations = [
 
     'english' => [
-        'brand' => 'BigManage',
+        'brand' => 'Idealistic: BigManage',
         'nav_home' => 'Home',
         'nav_features' => 'Features',
         'nav_usecases' => 'How it works',
@@ -56,7 +56,7 @@ $translations = [
         'contact_desc' => 'Want a demo, pricing details or to integrate BigManage with your stack? Drop a message and our team will get back to you.',
         'contact_email' => 'contact@idealistic.ai',
         'contact_site' => 'https://www.idealistic.ai',
-        'contact_location' => 'Europe, Athens',
+        'contact_location' => 'Europe, Estonia',
         'label_name' => 'Name',
         'placeholder_name' => 'Your name',
         'label_email' => 'Work Email',
@@ -85,7 +85,7 @@ $translations = [
     ],
 
     'greek' => [
-        'brand' => 'BigManage',
+        'brand' => 'Idealistic: BigManage',
         'nav_home' => 'Αρχική',
         'nav_features' => 'Χαρακτηριστικά',
         'nav_usecases' => 'Πώς λειτουργεί',
@@ -216,7 +216,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
             $id = random_number();
             $services_email = services_self_email(
                 $email,
-                'Idealistic AI | Contact Form [ID: ' . $id . ']',
+                'Idealistic | Contact Form [ID: ' . $id . ']',
                 "ID: " . $id . "\nName: " . $name . "\nEmail: " . $email . "\n\nMessage:\n" . $message
             );
             $form_status = $services_email === true;
@@ -229,14 +229,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <title>BigManage — Idealistic AI</title>
+    <title>BigManage — Idealistic</title>
 
     <meta name="description"
-          content="BigManage by Idealistic AI — manage companies, positions, reminders and access through natural chat across WhatsApp, Telegram, Discord and email.">
+          content="BigManage by Idealistic — manage companies, positions, reminders and access through natural chat across WhatsApp, Telegram, Discord and email.">
     <meta name="robots" content="index,follow">
     <link rel="canonical" href="https://www.idealistic.ai">
 
-    <meta property="og:title" content="BigManage — Idealistic AI">
+    <meta property="og:title" content="BigManage — Idealistic">
     <meta property="og:description"
           content="<?php echo htmlspecialchars($t['h1'], ENT_QUOTES, 'UTF-8'); ?>">
     <meta property="og:type" content="website">
@@ -244,7 +244,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
     <meta property="og:image" content="https://www.idealistic.ai/.images/logoTransparent.png">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="BigManage — Idealistic AI">
+    <meta name="twitter:title" content="BigManage — Idealistic">
     <meta name="twitter:description" content="<?php echo htmlspecialchars($t['h1'], ENT_QUOTES, 'UTF-8'); ?>">
     <meta name="twitter:image" content="https://www.idealistic.ai/.images/logoTransparent.png">
 
@@ -258,7 +258,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
             "description": "Manage companies, roles, reminders and access using natural chat across multiple platforms.",
             "publisher": {
                 "@type": "Organization",
-                "name": "Idealistic AI",
+                "name": "Idealistic",
                 "url": "https://www.idealistic.ai"
             }
         }
@@ -876,7 +876,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
     <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
         <div class="d-flex align-items-center gap-3 py-2">
             <img src="https://www.idealistic.ai/.images/logoCircular.png" alt="logo" height="32">
-            <small class="muted">© 2025 Idealistic AI — BigManage</small>
+            <small class="muted">© 2025 Idealistic — BigManage</small>
         </div>
 
         <div class="py-2 footer-links d-flex align-items-center gap-3 flex-wrap">
