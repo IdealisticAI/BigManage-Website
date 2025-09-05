@@ -889,7 +889,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
                target="_blank" rel="noopener"><i class="bi bi-journal-text"></i><span
                         class="d-none d-md-inline"><?php echo htmlspecialchars($t['ft_terms'], ENT_QUOTES, 'UTF-8'); ?></span></a>
             <a class="d-flex align-items-center gap-2"
-               href="https://www.idealistic.ai/bigmanage/policies/privacy_policy/
+               href="https://www.idealistic.ai/bigmanage/policies/privacy_policy/"
                target="_blank" rel="noopener"><i class="bi bi-shield-lock"></i><span
                         class="d-none d-md-inline"><?php echo htmlspecialchars($t['ft_privacy'], ENT_QUOTES, 'UTF-8'); ?></span></a>
             <a class="d-flex align-items-center gap-2"
