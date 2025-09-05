@@ -2,7 +2,7 @@
 require '/var/www/.structure/library/base/utilities.php';
 header('Content-type: text/plain');
 $file = @timed_file_get_contents(
-    "https://raw.githubusercontent.com/IdealisticAI/Legal-Information/refs/heads/main/terms/big_manage_terms_of_service.txt",
+    "https://raw.githubusercontent.com/IdealisticAI/Legal-Information/refs/heads/main/terms/big_manage_terms_of_use.txt",
     3
 );
 
