@@ -886,11 +886,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
         <div class="py-2 footer-links d-flex align-items-center gap-3 flex-wrap">
             <a class="d-flex align-items-center gap-2"
                href="https://www.idealistic.ai/bigmanage/terms/terms_of_use/"
-               target="_blank" rel="noopener"><i class="bi bi-file-earmark-text"></i><span
+               target="_blank" rel="noopener"><i class="bi bi-journal-text"></i><span
                         class="d-none d-md-inline"><?php echo htmlspecialchars($t['ft_terms'], ENT_QUOTES, 'UTF-8'); ?></span></a>
             <a class="d-flex align-items-center gap-2"
                href="https://www.idealistic.ai/bigmanage/policies/privacy_policy/
-               target="_blank" rel="noopener"><i class="bi bi-file-earmark-text"></i><span
+               target="_blank" rel="noopener"><i class="bi bi-shield-lock"></i><span
                         class="d-none d-md-inline"><?php echo htmlspecialchars($t['ft_privacy'], ENT_QUOTES, 'UTF-8'); ?></span></a>
             <a class="d-flex align-items-center gap-2"
                href="https://www.idealistic.ai/bigmanage/documentation/?language=<?php echo urlencode($_GET['language'] ?? ''); ?>"
