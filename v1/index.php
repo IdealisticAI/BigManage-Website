@@ -902,7 +902,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
             <a class="d-flex align-items-center gap-2" href="https://www.facebook.com/idealisticai" target="_blank"
                rel="noopener"><i class="bi bi-messenger"></i><span
                         class="d-none d-md-inline"><?php echo htmlspecialchars($t['ft_messenger'], ENT_QUOTES, 'UTF-8'); ?></span></a>
-            <a class="d-flex align-items-center gap-2" href="https://wa.me/6970155623" target="_blank"
+            <a class="d-flex align-items-center gap-2" href="https://wa.me/message/YA5Z4B5YULQZA1" target="_blank"
                rel="noopener"><i class="bi bi-whatsapp"></i><span
                         class="d-none d-md-inline"><?php echo htmlspecialchars($t['ft_whatsapp'], ENT_QUOTES, 'UTF-8'); ?></span></a>
             <a class="d-flex align-items-center gap-2" href="https://discord.com/invite/kmFJWcRtSP" target="_blank"
