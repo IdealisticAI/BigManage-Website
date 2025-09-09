@@ -209,6 +209,12 @@ if ($markdown === false) {
 
     switch ($language) {
         case "greek":
+        case "german":
+        case "spanish":
+        case "french":
+        case "italian":
+        case "dutch":
+        case "portuguese":
         case $english:
             break;
         default:
