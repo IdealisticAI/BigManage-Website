@@ -683,9 +683,11 @@ $translations = [
 ];
 
 if (!isset($lang)) {
-    $lang = 'english';
-} else if (isset($_GET['language'])) {
-    $lang = strtolower(trim($_GET['language']));
+    if (isset($_GET['language'])) {
+        $lang = strtolower(trim($_GET['language']));
+    } else {
+        $lang = 'english';
+    }
 }
 if (!in_array($lang, ['english', 'greek', 'spanish', 'french', 'german', 'italian', 'portuguese', 'dutch'], true)) {
     $lang = 'english';
@@ -1129,7 +1131,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
                             <li><a class="dropdown-item" href="/it/">🇮🇹 Italian</a></li>
                             <li><a class="dropdown-item" href="/pt/">🇵🇹 Portuguese</a>
                             </li>
-                            <li><a class="dropdown-item" href="?language=dutch">🇳🇱 Dutch</a></li>
+                            <li><a class="dropdown-item" href="/nl/">🇳🇱 Dutch</a></li>
                         </ul>
                     </div>
                 </li>
@@ -1423,7 +1425,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
                target="_blank" rel="noopener"><i class="bi bi-shield-lock"></i><span
                         class="d-none d-md-inline"><?php echo htmlspecialchars($t['ft_privacy'], ENT_QUOTES, 'UTF-8'); ?></span></a>
             <a class="d-flex align-items-center gap-2"
-               href="https://www.idealistic.ai/bigmanage/documentation/?language=<?php echo urlencode($_GET['language'] ?? ''); ?>"
+               href="https://www.idealistic.ai/bigmanage/documentation/<?php echo $langCodes[$lang] ?? ''; ?>"
                target="_blank" rel="noopener"><i class="bi bi-file-earmark-text"></i><span
                         class="d-none d-md-inline"><?php echo htmlspecialchars($t['ft_doc'], ENT_QUOTES, 'UTF-8'); ?></span></a>
             <a class="d-flex align-items-center gap-2" href="https://www.instagram.com/idealistic.ai" target="_blank"

@@ -204,7 +204,10 @@ if ($markdown === false) {
     require '/var/www/.structure/library/base/form.php';
     require_once '/var/www/.structure/library/ai/init.php';
     require_once '/var/www/.structure/library/account/init.php';
-    $language = strtolower(trim(get_form_get("language")));
+
+    if (!isset($language)) {
+        $language = strtolower(trim(get_form_get("language")));
+    }
     $english = "english";
 
     switch ($language) {
