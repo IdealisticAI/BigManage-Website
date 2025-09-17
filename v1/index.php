@@ -682,10 +682,24 @@ $translations = [
     ],
 ];
 
-$lang = strtolower($_GET['language'] ?? 'english');
+if (!isset($lang)) {
+    $lang = 'english';
+} else if (isset($_GET['language'])) {
+    $lang = strtolower(trim($_GET['language']));
+}
 if (!in_array($lang, ['english', 'greek', 'spanish', 'french', 'german', 'italian', 'portuguese', 'dutch'], true)) {
     $lang = 'english';
 }
+$langCodes = array(
+    'english' => 'en',
+    'greek' => 'el',
+    'spanish' => 'es',
+    'french' => 'fr',
+    'german' => 'de',
+    'italian' => 'it',
+    'portuguese' => 'pt',
+    'dutch' => 'nl'
+);
 $t = $translations[$lang];
 
 $errors = [];
@@ -738,7 +752,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
 }
 
 ?><!doctype html>
-<html lang="<?php echo htmlspecialchars($lang, ENT_QUOTES, 'UTF-8'); ?>" data-theme="light">
+<html lang="<?php echo htmlspecialchars($lang[$lang] ?? "en", ENT_QUOTES, 'UTF-8'); ?>" data-theme="light">
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
@@ -1107,15 +1121,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
                             <i class="bi bi-translate"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
-                            <li><a class="dropdown-item" href="?language=english" rel="nofollow">🇬🇧 English</a></li>
-                            <li><a class="dropdown-item" href="?language=greek" rel="nofollow">🇬🇷 Greek</a></li>
-                            <li><a class="dropdown-item" href="?language=spanish" rel="nofollow">🇪🇸 Spanish</a></li>
-                            <li><a class="dropdown-item" href="?language=french" rel="nofollow">🇫🇷 French</a></li>
-                            <li><a class="dropdown-item" href="?language=german" rel="nofollow">🇩🇪 German</a></li>
-                            <li><a class="dropdown-item" href="?language=italian" rel="nofollow">🇮🇹 Italian</a></li>
-                            <li><a class="dropdown-item" href="?language=portuguese" rel="nofollow">🇵🇹 Portuguese</a>
+                            <li><a class="dropdown-item" href="/en/">🇬🇧 English</a></li>
+                            <li><a class="dropdown-item" href="/el/">🇬🇷 Greek</a></li>
+                            <li><a class="dropdown-item" href="/es/">🇪🇸 Spanish</a></li>
+                            <li><a class="dropdown-item" href="/fr/">🇫🇷 French</a></li>
+                            <li><a class="dropdown-item" href="/de/">🇩🇪 German</a></li>
+                            <li><a class="dropdown-item" href="/it/">🇮🇹 Italian</a></li>
+                            <li><a class="dropdown-item" href="/pt/">🇵🇹 Portuguese</a>
                             </li>
-                            <li><a class="dropdown-item" href="?language=dutch" rel="nofollow">🇳🇱 Dutch</a></li>
+                            <li><a class="dropdown-item" href="?language=dutch">🇳🇱 Dutch</a></li>
                         </ul>
                     </div>
                 </li>
