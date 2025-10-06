@@ -1344,7 +1344,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
                             <i class="bi bi-envelope-fill me-2"></i><?php echo htmlspecialchars($t['contact_email'], ENT_QUOTES, 'UTF-8'); ?>
                         </li>
                         <li>
-                            <i class="bi bi-globe2 me-2"></i><?php echo htmlspecialchars($t['contact_site'], ENT_QUOTES, 'UTF-8'); ?>
+                            <i class="bi bi-globe2 me-2"></i><a href="https://www.idealistic.ai"
+                                                                target="_blank"><?php echo htmlspecialchars($t['contact_site'], ENT_QUOTES, 'UTF-8'); ?></a>
                         </li>
                         <li>
                             <i class="bi bi-geo-alt-fill me-2"></i><a
