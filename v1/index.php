@@ -1123,15 +1123,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
                             <i class="bi bi-translate"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
-                            <li><a class="dropdown-item" href="/en/">🇬🇧 English</a></li>
-                            <li><a class="dropdown-item" href="/el/">🇬🇷 Greek</a></li>
-                            <li><a class="dropdown-item" href="/es/">🇪🇸 Spanish</a></li>
-                            <li><a class="dropdown-item" href="/fr/">🇫🇷 French</a></li>
-                            <li><a class="dropdown-item" href="/de/">🇩🇪 German</a></li>
-                            <li><a class="dropdown-item" href="/it/">🇮🇹 Italian</a></li>
-                            <li><a class="dropdown-item" href="/pt/">🇵🇹 Portuguese</a>
+                            <li><a class="dropdown-item" href="en/">🇬🇧 English</a></li>
+                            <li><a class="dropdown-item" href="el/">🇬🇷 Greek</a></li>
+                            <li><a class="dropdown-item" href="es/">🇪🇸 Spanish</a></li>
+                            <li><a class="dropdown-item" href="fr/">🇫🇷 French</a></li>
+                            <li><a class="dropdown-item" href="de/">🇩🇪 German</a></li>
+                            <li><a class="dropdown-item" href="it/">🇮🇹 Italian</a></li>
+                            <li><a class="dropdown-item" href="pt/">🇵🇹 Portuguese</a>
                             </li>
-                            <li><a class="dropdown-item" href="/nl/">🇳🇱 Dutch</a></li>
+                            <li><a class="dropdown-item" href="nl/">🇳🇱 Dutch</a></li>
                         </ul>
                     </div>
                 </li>
