@@ -716,7 +716,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
     require_once '/var/www/.structure/library/base/utilities.php';
 
     $name = trim((string)($_POST['name'] ?? ''));
-    $email = trim((string)($_POST['email'] ?? ''));
+    $email = strtolower(trim((string)($_POST['email'] ?? '')));
     $message = trim((string)($_POST['message'] ?? ''));
 
     if ($name === '') {
@@ -737,8 +737,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
 
     if (empty($errors)) {
         require_once '/var/www/.structure/library/memory/init.php';
+        $cooldownTime = 60 * 5; // 5 minutes
 
-        if (has_memory_cooldown("idealistic_ai_contact_form", 60 * 5)) {
+        if (has_memory_cooldown("idealistic_ai_contact_form", 5)
+            || has_memory_cooldown("idealistic_ai_contact_form=" . strtolower($name), $cooldownTime)
+            || has_memory_cooldown("idealistic_ai_contact_form=" . $email, $cooldownTime)) {
             $errors[] = $t['err_rate_limit'];
         } else {
             require_once '/var/www/.structure/library/email/init.php';
@@ -1123,13 +1126,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
                             <i class="bi bi-translate"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
-                            <li><a class="dropdown-item" href="https://www.idealistic.ai/bigmanage/en/">🇬🇧 English</a></li>
-                            <li><a class="dropdown-item" href="https://www.idealistic.ai/bigmanage/el/">🇬🇷 Greek</a></li>
-                            <li><a class="dropdown-item" href="https://www.idealistic.ai/bigmanage/es/">🇪🇸 Spanish</a></li>
-                            <li><a class="dropdown-item" href="https://www.idealistic.ai/bigmanage/fr/">🇫🇷 French</a></li>
-                            <li><a class="dropdown-item" href="https://www.idealistic.ai/bigmanage/de/">🇩🇪 German</a></li>
-                            <li><a class="dropdown-item" href="https://www.idealistic.ai/bigmanage/it/">🇮🇹 Italian</a></li>
-                            <li><a class="dropdown-item" href="https://www.idealistic.ai/bigmanage/pt/">🇵🇹 Portuguese</a>
+                            <li><a class="dropdown-item" href="https://www.idealistic.ai/bigmanage/en/">🇬🇧 English</a>
+                            </li>
+                            <li><a class="dropdown-item" href="https://www.idealistic.ai/bigmanage/el/">🇬🇷 Greek</a>
+                            </li>
+                            <li><a class="dropdown-item" href="https://www.idealistic.ai/bigmanage/es/">🇪🇸 Spanish</a>
+                            </li>
+                            <li><a class="dropdown-item" href="https://www.idealistic.ai/bigmanage/fr/">🇫🇷 French</a>
+                            </li>
+                            <li><a class="dropdown-item" href="https://www.idealistic.ai/bigmanage/de/">🇩🇪 German</a>
+                            </li>
+                            <li><a class="dropdown-item" href="https://www.idealistic.ai/bigmanage/it/">🇮🇹 Italian</a>
+                            </li>
+                            <li><a class="dropdown-item" href="https://www.idealistic.ai/bigmanage/pt/">🇵🇹
+                                    Portuguese</a>
                             </li>
                             <li><a class="dropdown-item" href="nl/">🇳🇱 Dutch</a></li>
                         </ul>
