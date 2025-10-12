@@ -773,12 +773,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
           content="<?php echo htmlspecialchars($t['h1'], ENT_QUOTES, 'UTF-8'); ?>">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.idealistic.ai">
-    <meta property="og:image" content="https://www.idealistic.ai/.images/logoTransparent.png">
+    <meta property="og:image" content="/.images/logoTransparent.png">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="BigManage — Idealistic">
     <meta name="twitter:description" content="<?php echo htmlspecialchars($t['h1'], ENT_QUOTES, 'UTF-8'); ?>">
-    <meta name="twitter:image" content="https://www.idealistic.ai/.images/logoTransparent.png">
+    <meta name="twitter:image" content="/.images/logoTransparent.png">
 
     <script type="application/ld+json">
         {
@@ -1126,22 +1126,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
                             <i class="bi bi-translate"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
-                            <li><a class="dropdown-item" href="https://www.idealistic.ai/bigmanage/en/">🇬🇧 English</a>
+                            <li><a class="dropdown-item" href="/bigmanage/en/">🇬🇧 English</a>
                             </li>
-                            <li><a class="dropdown-item" href="https://www.idealistic.ai/bigmanage/el/">🇬🇷 Greek</a>
+                            <li><a class="dropdown-item" href="/bigmanage/el/">🇬🇷 Greek</a>
                             </li>
-                            <li><a class="dropdown-item" href="https://www.idealistic.ai/bigmanage/es/">🇪🇸 Spanish</a>
+                            <li><a class="dropdown-item" href="/bigmanage/es/">🇪🇸 Spanish</a>
                             </li>
-                            <li><a class="dropdown-item" href="https://www.idealistic.ai/bigmanage/fr/">🇫🇷 French</a>
+                            <li><a class="dropdown-item" href="/bigmanage/fr/">🇫🇷 French</a>
                             </li>
-                            <li><a class="dropdown-item" href="https://www.idealistic.ai/bigmanage/de/">🇩🇪 German</a>
+                            <li><a class="dropdown-item" href="/bigmanage/de/">🇩🇪 German</a>
                             </li>
-                            <li><a class="dropdown-item" href="https://www.idealistic.ai/bigmanage/it/">🇮🇹 Italian</a>
+                            <li><a class="dropdown-item" href="/bigmanage/it/">🇮🇹 Italian</a>
                             </li>
-                            <li><a class="dropdown-item" href="https://www.idealistic.ai/bigmanage/pt/">🇵🇹
+                            <li><a class="dropdown-item" href="/bigmanage/pt/">🇵🇹
                                     Portuguese</a>
                             </li>
-                            <li><a class="dropdown-item" href="nl/">🇳🇱 Dutch</a></li>
+                            <li><a class="dropdown-item" href="/bigmanage/nl/">🇳🇱 Dutch</a></li>
                         </ul>
                     </div>
                 </li>
@@ -1430,15 +1430,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
 
         <div class="py-2 footer-links d-flex align-items-center gap-3 flex-wrap">
             <a class="d-flex align-items-center gap-2"
-               href="https://www.idealistic.ai/bigmanage/terms/terms_of_use/"
+               href="/bigmanage/terms/terms_of_use/"
                target="_blank" rel="noopener"><i class="bi bi-journal-text"></i><span
                         class="d-none d-md-inline"><?php echo htmlspecialchars($t['ft_terms'], ENT_QUOTES, 'UTF-8'); ?></span></a>
             <a class="d-flex align-items-center gap-2"
-               href="https://www.idealistic.ai/bigmanage/policies/privacy_policy/"
+               href="/bigmanage/policies/privacy_policy/"
                target="_blank" rel="noopener"><i class="bi bi-shield-lock"></i><span
                         class="d-none d-md-inline"><?php echo htmlspecialchars($t['ft_privacy'], ENT_QUOTES, 'UTF-8'); ?></span></a>
             <a class="d-flex align-items-center gap-2"
-               href="https://www.idealistic.ai/bigmanage/documentation/<?php echo $langCodes[$lang] ?? ''; ?>"
+               href="/bigmanage/documentation/<?php echo $langCodes[$lang] ?? ''; ?>"
                target="_blank" rel="noopener"><i class="bi bi-file-earmark-text"></i><span
                         class="d-none d-md-inline"><?php echo htmlspecialchars($t['ft_doc'], ENT_QUOTES, 'UTF-8'); ?></span></a>
             <a class="d-flex align-items-center gap-2" href="https://www.instagram.com/idealistic.ai" target="_blank"
