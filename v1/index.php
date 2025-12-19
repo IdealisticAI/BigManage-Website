@@ -84,6 +84,7 @@ $translations = [
         'ft_whatsapp' => 'WhatsApp',
         'ft_discord' => 'Discord',
         'ft_telegram' => 'Telegram',
+        'ft_pricing' => 'Pricing',
     ],
 
     'greek' => [
@@ -169,6 +170,7 @@ $translations = [
         'ft_whatsapp' => 'WhatsApp',
         'ft_discord' => 'Discord',
         'ft_telegram' => 'Telegram',
+        'ft_pricing' => 'Τιμολόγηση',
     ],
 
     'dutch' => [
@@ -254,6 +256,7 @@ $translations = [
         'ft_whatsapp' => 'WhatsApp',
         'ft_discord' => 'Discord',
         'ft_telegram' => 'Telegram',
+        'ft_pricing' => 'Prijzen',
     ],
 
     'german' => [
@@ -339,6 +342,7 @@ $translations = [
         'ft_whatsapp' => 'WhatsApp',
         'ft_discord' => 'Discord',
         'ft_telegram' => 'Telegram',
+        'ft_pricing' => 'Preise',
     ],
 
     'italian' => [
@@ -424,6 +428,7 @@ $translations = [
         'ft_whatsapp' => 'WhatsApp',
         'ft_discord' => 'Discord',
         'ft_telegram' => 'Telegram',
+        'ft_pricing' => 'Prezzi',
     ],
 
     'french' => [
@@ -509,6 +514,7 @@ $translations = [
         'ft_whatsapp' => 'WhatsApp',
         'ft_discord' => 'Discord',
         'ft_telegram' => 'Telegram',
+        'ft_pricing' => 'Tarification',
     ],
 
     'portuguese' => [
@@ -594,6 +600,7 @@ $translations = [
         'ft_whatsapp' => 'WhatsApp',
         'ft_discord' => 'Discord',
         'ft_telegram' => 'Telegram',
+        'ft_pricing' => 'Preços',
     ],
 
     'spanish' => [
@@ -679,6 +686,7 @@ $translations = [
         'ft_whatsapp' => 'WhatsApp',
         'ft_discord' => 'Discord',
         'ft_telegram' => 'Telegram',
+        'ft_pricing' => 'Precios',
     ],
 ];
 
@@ -1361,6 +1369,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
                             <i class="bi bi-geo-alt-fill me-2"></i><a
                                     href="https://ariregister.rik.ee/eng/company/17320016/Idealistic-OÜ"
                                     target="_blank"><?php echo htmlspecialchars($t['contact_location'], ENT_QUOTES, 'UTF-8'); ?></a>
+                        </li>
+                        <li>
+                            <i class="bi bi-currency-exchange me-2"></i><a
+                                    href="http://www.idealistic.ai/bigmanage/pricing"
+                                    target="_blank"><?php echo htmlspecialchars($t['ft_pricing'], ENT_QUOTES, 'UTF-8'); ?></a>
                         </li>
                     </ul>
                 </div>
