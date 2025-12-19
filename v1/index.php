@@ -747,7 +747,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
         require_once '/var/www/.structure/library/memory/init.php';
         $cooldownTime = 60 * 30;
         $dayTime = 60 * 60 * 24;
-        $maxPerEmail = 3;
+        $maxPerEmail = 4; // > 3 effectively
 
         if (has_memory_cooldown("idealistic_ai_contact_form", 3)
             || has_memory_cooldown("idealistic_ai_contact_form=cooldown=" . strtolower($name), $cooldownTime)
