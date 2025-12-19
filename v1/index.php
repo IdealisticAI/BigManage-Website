@@ -765,7 +765,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
             $services_email = services_self_email(
                 $email,
                 'Idealistic | Contact Form [ID: ' . $id . ']',
-                "ID: " . $id . "\nName: " . $name . "\nEmail: " . $email . "\n\nMessage:\n" . $message
+                "ID: " . $id
+                . "\nName: " . $name
+                . "\nEmail: " . $email
+                . "\nIP: " . get_client_ip_address()
+                . "\nLanguage: " . ($langCodes[$lang] ?? "en")
+                . "\n\nMessage:\n" . $message
             );
             $form_status = $services_email === true;
         }
