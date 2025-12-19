@@ -746,12 +746,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
     if (empty($errors)) {
         require_once '/var/www/.structure/library/memory/init.php';
         $cooldownTime = 60 * 30;
+        $dayTime = 60 * 60 * 24;
+        $maxPerEmail = 3;
 
-        if (has_memory_cooldown("idealistic_ai_contact_form", 5)
-            || has_memory_cooldown("idealistic_ai_contact_form=" . strtolower($name), $cooldownTime)
-            || has_memory_cooldown("idealistic_ai_contact_form=" . $email, $cooldownTime)
-            || has_memory_cooldown("idealistic_ai_contact_form=" . get_client_ip_address(), $cooldownTime)
-            || has_memory_cooldown("idealistic_ai_contact_form=" . string_to_integer(strtolower($message)), $cooldownTime)) {
+        if (has_memory_cooldown("idealistic_ai_contact_form", 3)
+            || has_memory_cooldown("idealistic_ai_contact_form=cooldown=" . strtolower($name), $cooldownTime)
+            || has_memory_limit("idealistic_ai_contact_form=limit=" . strtolower($name), $maxPerEmail, $dayTime)
+            || has_memory_cooldown("idealistic_ai_contact_form=cooldown=" . $email, $cooldownTime)
+            || has_memory_limit("idealistic_ai_contact_form=limit=" . $email, $maxPerEmail, $dayTime)
+            || has_memory_cooldown("idealistic_ai_contact_form=cooldown=" . get_client_ip_address(), $cooldownTime)
+            || has_memory_limit("idealistic_ai_contact_form=limit=" . get_client_ip_address(), $maxPerEmail, $dayTime)
+            || has_memory_cooldown("idealistic_ai_contact_form==cooldown" . string_to_integer(strtolower($message)), $cooldownTime)
+            || has_memory_limit("idealistic_ai_contact_form=limit=" . string_to_integer(strtolower($message)), $maxPerEmail, $dayTime)) {
             $errors[] = $t['err_rate_limit'];
         } else {
             require_once '/var/www/.structure/library/email/init.php';
