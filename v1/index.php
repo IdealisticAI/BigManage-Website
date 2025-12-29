@@ -1,4 +1,14 @@
 <?php
+require_once '/var/www/.structure/library/base/utilities.php';
+$recaptcha_secret_key_data = get_keys_from_file("google_recaptcha", 1);
+
+if ($recaptcha_secret_key_data === null) {
+    $recaptcha_secret_key = "";
+} else {
+    $recaptcha_secret_key = $recaptcha_secret_key_data[0];
+}
+$recaptcha_site_key = '6Lf_zyQUAAAAAAxfpHY5Io2l23ay3lSWgRzi_l6B';
+
 $translations = [
 
     'english' => [
@@ -72,6 +82,7 @@ $translations = [
         'err_message_required' => 'Message cannot be empty.',
         'err_message_length' => 'Message must be between 32 and 1024 characters.',
         'err_rate_limit' => 'You are sending messages too quickly. Please wait a moment and try again.',
+        'err_captcha' => 'Captcha verification failed. Please try again.',
         'success_received' => 'Thanks — your message was received. We will contact you as soon as possible.',
         'failure_received' => 'Your message failed to be received. Please try again later.',
         'submission_problem' => 'There was a problem submitting the form:',
@@ -85,6 +96,8 @@ $translations = [
         'ft_discord' => 'Discord',
         'ft_telegram' => 'Telegram',
         'ft_pricing' => 'Pricing',
+        'modal_captcha_title' => 'Security Check',
+        'modal_captcha_close' => 'Close',
     ],
 
     'greek' => [
@@ -171,6 +184,9 @@ $translations = [
         'ft_discord' => 'Discord',
         'ft_telegram' => 'Telegram',
         'ft_pricing' => 'Τιμολόγηση',
+        'err_captcha' => 'Η επαλήθευση Captcha απέτυχε.',
+        'modal_captcha_title' => 'Έλεγχος Ασφαλείας',
+        'modal_captcha_close' => 'Κλείσιμο',
     ],
 
     'dutch' => [
@@ -257,6 +273,9 @@ $translations = [
         'ft_discord' => 'Discord',
         'ft_telegram' => 'Telegram',
         'ft_pricing' => 'Prijzen',
+        'err_captcha' => 'Captcha-verificatie mislukt.',
+        'modal_captcha_title' => 'Veiligheidscontrole',
+        'modal_captcha_close' => 'Sluiten',
     ],
 
     'german' => [
@@ -343,6 +362,9 @@ $translations = [
         'ft_discord' => 'Discord',
         'ft_telegram' => 'Telegram',
         'ft_pricing' => 'Preise',
+        'err_captcha' => 'Captcha-Überprüfung fehlgeschlagen.',
+        'modal_captcha_title' => 'Sicherheitsüberprüfung',
+        'modal_captcha_close' => 'Schließen',
     ],
 
     'italian' => [
@@ -429,6 +451,9 @@ $translations = [
         'ft_discord' => 'Discord',
         'ft_telegram' => 'Telegram',
         'ft_pricing' => 'Prezzi',
+        'err_captcha' => 'Verifica Captcha fallita.',
+        'modal_captcha_title' => 'Controllo di sicurezza',
+        'modal_captcha_close' => 'Chiudi',
     ],
 
     'french' => [
@@ -515,6 +540,9 @@ $translations = [
         'ft_discord' => 'Discord',
         'ft_telegram' => 'Telegram',
         'ft_pricing' => 'Tarification',
+        'err_captcha' => 'La vérification Captcha a échoué.',
+        'modal_captcha_title' => 'Contrôle de sécurité',
+        'modal_captcha_close' => 'Fermer',
     ],
 
     'portuguese' => [
@@ -601,6 +629,9 @@ $translations = [
         'ft_discord' => 'Discord',
         'ft_telegram' => 'Telegram',
         'ft_pricing' => 'Preços',
+        'err_captcha' => 'A verificação do Captcha falhou.',
+        'modal_captcha_title' => 'Verificação de segurança',
+        'modal_captcha_close' => 'Fechar',
     ],
 
     'spanish' => [
@@ -631,7 +662,7 @@ $translations = [
         'f_positions' => 'Visión financiera integral',
         'f_positions_desc' => 'Monitorea proveedores, inversores, accionistas, socios, bienes, servicios e ingresos por ventas o suscripciones sin esfuerzo. BigManage consolida todos los datos financieros en una única plataforma fácil de gestionar para tomar decisiones más inteligentes.',
         'f_departments' => 'Control de acceso avanzado',
-        'f_departments_desc' => 'Protege tu empresa con opciones de seguridad personalizables, incluyendo acceso general, acceso basado en tiempo y permisos específicos por días de la semana. BigManage garantiza que los datos sensibles estén accesibles solo para las personas adecuadas en el momento adecuado.',
+        'f_departments_desc' => 'Protege tu empresa con opciones de seguridad personalizáveis, incluyendo acceso general, acceso basado en tiempo y permisos específicos por días de la semana. BigManage garantiza que los datos sensibles estén accesibles solo para las personas adecuadas en el momento adecuado.',
         'f_access' => 'Herramientas creativas potentes',
         'f_access_desc' => 'Potencia la innovación con herramientas para creación de imágenes, creación y modificación de archivos y análisis inteligente de enlaces. BigManage respalda la creatividad de tu equipo mientras mantiene los procesos organizados y accionables.',
         'f_reminders' => 'Almacenamiento inteligente y gestión de adjuntos',
@@ -687,6 +718,9 @@ $translations = [
         'ft_discord' => 'Discord',
         'ft_telegram' => 'Telegram',
         'ft_pricing' => 'Precios',
+        'err_captcha' => 'Verificación Captcha fallida.',
+        'modal_captcha_title' => 'Control de seguridad',
+        'modal_captcha_close' => 'Cerrar',
     ],
 ];
 
@@ -720,8 +754,28 @@ $form_status = null;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST'
     && isset($_POST['contact_form'])) {
+    $recaptcha_response = $_POST['g-recaptcha-response'] ?? '';
+    $user_ip = get_client_ip_address();
+    $verify_url = 'https://www.google.com/recaptcha/api/siteverify';
+    $data = [
+        'secret' => $recaptcha_secret_key,
+        'response' => $recaptcha_response,
+        'remoteip' => $user_ip
+    ];
+    $options = [
+        'http' => [
+            'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+            'method' => 'POST',
+            'content' => http_build_query($data)
+        ]
+    ];
+    $context = stream_context_create($options);
+    $verify_result = file_get_contents($verify_url, false, $context);
+    $json_result = json_decode($verify_result);
 
-    require_once '/var/www/.structure/library/base/utilities.php';
+    if (!$json_result->success) {
+        $errors[] = $t['err_captcha'];
+    }
 
     $name = trim((string)($_POST['name'] ?? ''));
     $email = strtolower(trim((string)($_POST['email'] ?? '')));
@@ -747,15 +801,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
         require_once '/var/www/.structure/library/memory/init.php';
         $cooldownTime = 60 * 30;
         $dayTime = 60 * 60 * 24;
-        $maxPerEmail = 4; // > 3 effectively
+        $maxPerEmail = 4;
+
+        $client_ip = get_client_ip_address();
 
         if (has_memory_cooldown("idealistic_ai_contact_form", 3)
             || has_memory_cooldown("idealistic_ai_contact_form=cooldown=" . strtolower($name), $cooldownTime)
             || has_memory_limit("idealistic_ai_contact_form=limit=" . strtolower($name), $maxPerEmail, $dayTime)
             || has_memory_cooldown("idealistic_ai_contact_form=cooldown=" . $email, $cooldownTime)
             || has_memory_limit("idealistic_ai_contact_form=limit=" . $email, $maxPerEmail, $dayTime)
-            || has_memory_cooldown("idealistic_ai_contact_form=cooldown=" . get_client_ip_address(), $cooldownTime)
-            || has_memory_limit("idealistic_ai_contact_form=limit=" . get_client_ip_address(), $maxPerEmail, $dayTime)
+            || has_memory_cooldown("idealistic_ai_contact_form=cooldown=" . $client_ip, $cooldownTime)
+            || has_memory_limit("idealistic_ai_contact_form=limit=" . $client_ip, $maxPerEmail, $dayTime)
             || has_memory_cooldown("idealistic_ai_contact_form==cooldown" . string_to_integer(strtolower($message)), $cooldownTime)
             || has_memory_limit("idealistic_ai_contact_form=limit=" . string_to_integer(strtolower($message)), $maxPerEmail, $dayTime)) {
             $errors[] = $t['err_rate_limit'];
@@ -768,7 +824,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
                 "ID: " . $id
                 . "\nName: " . $name
                 . "\nEmail: " . $email
-                . "\nIP: " . get_client_ip_address()
+                . "\nIP: " . $client_ip
                 . "\nLanguage: " . ($langCodes[$lang] ?? "en")
                 . "\n\nMessage:\n" . $message
             );
@@ -824,6 +880,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link href="https://www.idealistic.ai/.design/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
     <style>
         :root {
@@ -1015,6 +1073,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
             min-height: 140px;
             resize: vertical;
             overflow: auto
+        }
+
+        /* Modal tweaks for theme consistency */
+        .modal-content {
+            background-color: var(--surface);
+            color: var(--text);
+            border: 1px solid var(--surface-border);
+        }
+
+        .modal-header, .modal-footer {
+            border-color: var(--surface-border);
+        }
+
+        .btn-close {
+            filter: var(--theme-filter, none);
+        }
+
+        html[data-theme='dark'] .btn-close {
+            filter: invert(1) grayscale(100%) brightness(200%);
         }
 
         footer {
@@ -1407,7 +1484,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
                     }
                     ?>
 
-                    <form class="p-3 contact-card reveal" method="post" action="#contact" novalidate>
+                    <form class="p-3 contact-card reveal" id="mainContactForm" method="post" action="#contact"
+                          novalidate>
                         <input type="hidden" name="contact_form" value="1">
 
                         <div style="display:none;position:absolute;left:-9999px;">
@@ -1435,6 +1513,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
                                       minlength="32" maxlength="1024"
                                       placeholder="<?php echo htmlspecialchars($t['placeholder_message'], ENT_QUOTES, 'UTF-8'); ?>"><?php echo htmlspecialchars($message, ENT_QUOTES, 'UTF-8'); ?></textarea>
                         </div>
+
+                        <div id="recaptcha-token-container"></div>
+
                         <div class="d-grid">
                             <button class="btn btn-primary btn-lg"
                                     type="submit"><?php echo htmlspecialchars($t['btn_submit'], ENT_QUOTES, 'UTF-8'); ?></button>
@@ -1486,7 +1567,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
     </div>
 </footer>
 
+<div class="modal fade" id="captchaModal" tabindex="-1" aria-labelledby="captchaModalLabel" aria-hidden="true"
+     data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"
+                    id="captchaModalLabel"><?php echo htmlspecialchars($t['modal_captcha_title'], ENT_QUOTES, 'UTF-8'); ?></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body d-flex justify-content-center py-4">
+                <div class="g-recaptcha" data-sitekey="<?php echo $recaptcha_site_key; ?>"
+                     data-callback="onCaptchaSolved"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal"><?php echo htmlspecialchars($t['modal_captcha_close'], ENT_QUOTES, 'UTF-8'); ?></button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
+    function onCaptchaSolved(token) {
+        const form = document.getElementById('mainContactForm');
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'g-recaptcha-response';
+        input.value = token;
+        form.appendChild(input);
+        form.dataset.verified = 'true';
+        form.submit();
+        const modalEl = document.getElementById('captchaModal');
+        const modal = bootstrap.Modal.getInstance(modalEl);
+        if (modal) modal.hide();
+    }
+
     (function () {
         const root = document.documentElement;
         const toggle = document.getElementById('themeToggle');
@@ -1599,14 +1715,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
 
         window.addEventListener('resize', adjustTimeline);
         adjustTimeline();
-
         const mediaReduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+
         if (mediaReduce && mediaReduce.matches) {
             document.querySelectorAll('.reveal').forEach(el => {
                 el.style.transition = 'none';
                 el.classList.add('in-view');
             });
         }
+        const contactForm = document.getElementById('mainContactForm');
+        contactForm.addEventListener('submit', function (e) {
+            if (this.dataset.verified === 'true') {
+                return;
+            }
+            e.preventDefault();
+            if (!this.checkValidity()) {
+                this.reportValidity();
+                return;
+            }
+            const captchaModal = new bootstrap.Modal(document.getElementById('captchaModal'));
+            captchaModal.show();
+        });
+
     })();
 </script>
 
